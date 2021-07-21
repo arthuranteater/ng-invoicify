@@ -1,0 +1,52 @@
+<section @fadeInAnimation>
+    <ol class="breadcrumb">
+        <li><a routerLink="/home">Home</a></li>
+        <li class="active">Invoices</li>
+    </ol>
+  
+    <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  
+    <div class="topStuff">
+      <div class="leftStuff">
+        <h2>Invoices</h2>
+        <a class="btn btn-primary" routerLink="/invoice/add">Add Invoice</a>
+      </div>
+  
+      <div class="filterStuff">
+        <div class="selectAndLabel">
+          <label for="filter">Filter By</label>
+          <select [(ngModel)]="filterBy">
+            <option value="description">Description</option>
+            <option value="client">Client</option>
+            <option value="createdBy">Created By</option>
+            <option value="createdOn">Created On</option>
+          </select>
+        </div>
+        <input type="text" [(ngModel)]="searchText" id="search" placeholder="Search">
+      </div>
+    </div>
+
+    <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+      <thead>
+        <tr>
+          <th>ID <button (click)="idSort(invoices)" class="sort">&#x2195;</button></th>
+          <th>Description <button (click)="descSort(invoices)" class="sort">&#x2195;</button></th>
+          <th>Client <button (click)="clientSort(invoices)" class="sort">&#x2195;</button></th>
+          <th>Line Items</th>
+          <th>Created By</th>
+          <th>Created On</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of invoices">
+          <td>{{invoice.id}}</td>
+          <td>{{invoice.invoiceDescription}}</td>
+          <td>{{invoice.company.name}}</td>
+          <td>{{invoice.lineItems.length}}</td>
+          <td>{{invoice.createdBy.username}}</td>
+          <td>{{invoice.createdOn}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  

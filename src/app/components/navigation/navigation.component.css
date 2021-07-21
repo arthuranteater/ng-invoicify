@@ -1,0 +1,53 @@
+.flexbox{
+    display: flex;
+    flex-direction: column;
+}
+nav {
+    background-color: grey;
+}
+.logout {
+    cursor: pointer;
+}
+.navbar-nav>li>a, .navbar-text{
+    color: white;
+}
+
+.navbar-inverse {
+    border-color: grey;
+}
+
+a {
+    color: black;
+}
+
+.btn {
+    background-color: #5f285E;
+    border-color: black;
+}
+
+.btn-info {
+    border-color: black;
+}
+
+.btn-info:hover {
+    background-color: #8A3575;
+}
+
+.btn-success:hover {
+    border-color: black;
+    background-color: #8A3575;
+}
+
+.btn[disabled]:hover {
+    background-color: #5f285E
+}
+
+.navbar-nav>li>a {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.navbar-nav>li>a:hover {
+    background-color: #555555;
+}
+

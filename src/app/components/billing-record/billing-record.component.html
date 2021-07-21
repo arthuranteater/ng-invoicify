@@ -1,0 +1,55 @@
+<section @fadeInAnimation>
+    <ol class="breadcrumb">
+        <li><a routerLink="/home">Home</a></li>
+        <li class="active">Billing Records</li>
+    </ol>
+  
+    <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  
+    <div class="topStuff">
+      <div class="leftStuff">
+        <h2>Billing Records</h2>
+        <a class="btn btn-primary" routerLink="/billing-record/add">Add Billing Record</a>
+      </div>
+      <div class="filterStuff">
+        <div class="selectAndStuff">
+          <label for="filter">Filter By</label>
+          <select [(ngModel)]="filterBy">
+              <option value="description">Description</option>
+              <option value="companyName">Client</option>
+              <option value="createdBy">Created By</option>
+          </select>
+        </div>
+        <input type="text" [(ngModel)]="searchText" id="search" placeholder="Search">
+      </div>
+    </div>
+  
+    <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+      <thead>
+        <tr>
+          <th>ID <button (click)="idSort(billingRecords)" class="sort">&#x2195;</button></th>
+          <th>Description <button (click)="descSort(billingRecords)" class="sort">&#x2195;</button></th>
+          <th>Client <button (click)="clientSort(billingRecords)" class="sort">&#x2195;</button></th>
+          <th>Type</th>
+          <th>Created By</th>
+          <th>Total</th>
+          <!-- <th>Admin</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let billingRecord of billingRecords">
+          <td>{{billingRecord.id}}</td>
+          <td>{{billingRecord.description}}</td>
+          <td>{{billingRecord.client.name}}</td>
+          <td>{{(billingRecord.rate && billingRecord.quantity) ? "Rate Based" : "Flat Fee"}}</td>
+          <td>{{billingRecord.createdBy.username}}</td>
+          <td>{{billingRecord.total}}</td>
+          <!-- <td class="text-center">
+            <a class="btn btn-primary" [routerLink]="['/billing-record/edit/', billingRecord.id]">Edit</a>&nbsp;
+            <button (click)="deleteBillingRecord(billingRecord.id)" class="btn btn-danger">Delete</button>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  

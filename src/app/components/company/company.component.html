@@ -1,0 +1,47 @@
+<section @fadeInAnimation>
+    <ol class="breadcrumb">
+        <li><a routerLink="/home">Home</a></li>
+        <li class="active">Companies</li>
+    </ol>
+  
+    <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  
+    <div class="topStuff">
+      <div class="leftStuff">
+        <h2>Companies</h2>
+        <a class="btn btn-primary" routerLink="/company/add">Add Company</a>
+      </div>
+  
+      <div class="filterStuff">
+        <div class="selectAndLabel">
+          <label for="filter">Filter By</label>
+          <select [(ngModel)]="filterBy">
+            <option value="companyName">Company Name</option>
+          </select>
+        </div>
+        <input type="text" [(ngModel)]="searchText" id="search" placeholder="Search">
+      </div>
+    </div>
+  
+  
+    <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+      <thead>
+        <tr>
+          <th>ID <button (click)="idSort(companies)" class="sort">&#x2195;</button></th>
+          <th>Name <button (click)="companySort(companies)" class="sort">&#x2195;</button></th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <td>{{company.id}}</td>
+          <td>{{company.name}}</td>
+          <td class="text-center">
+            <a class="btn btn-primary" [routerLink]="['/company/edit/', company.id]">Edit</a>&nbsp;
+            <button (click)="deleteCompany(company.id)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  

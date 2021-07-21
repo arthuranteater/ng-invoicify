@@ -1,0 +1,46 @@
+<section @fadeInAnimation>
+    <ol class="breadcrumb">
+      <li>
+        <a routerLink="/home">Home</a>
+      </li>
+      <li>
+        <a routerLink="/user">Users</a>
+      </li>
+      <li class="active">Manage User</li>
+    </ol>
+  
+    <a class="btn btn-primary" routerLink="/user">Return to Users</a>
+  
+    <h1>Manage User</h1>
+  
+    <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  
+    <form novalidate (ngSubmit)="saveUser(userForm)" #userForm="ngForm" class="form-horizontal">
+      <input [ngModel]="user?.id" ngModel #userId="ngModel" type="hidden" name="id">
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Username</label>
+        <div class="col-sm-10">
+          <input [ngModel]="user?.username" ngModel #userName="ngModel" type="text" class="form-control" id="username" name="username"
+            placeholder="Username" required minlength="5" maxlength="30">
+          <span *ngIf="formErrors.username" class="text-danger">
+            {{ formErrors.username }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input ngModel #password="ngModel" type="password" class="form-control" id="password" name="password"
+            placeholder="Password" minlength="8" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
+          <span *ngIf="formErrors.password" class="text-danger">
+            {{ formErrors.password }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button [disabled]="!userForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </section>

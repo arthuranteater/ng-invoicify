@@ -1,0 +1,65 @@
+<section @fadeInAnimation> 
+    <ol class="breadcrumb">
+        <li><a routerLink="/home">Home</a></li>
+        <li class="active">Contacts</li>
+    </ol>
+  
+    <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  
+    <div class="topStuff">
+      <div class="leftStuff">
+        <h2>Contacts</h2>
+        <a class="btn btn-primary" routerLink="/contact/add">Add Contact</a>
+      </div>
+      
+      <div class="filterStuff">
+        <div class="selectAndLabel">
+          <label for="filter">Filter By</label>
+          <select [(ngModel)]="filterBy" id="filter">
+              <option value="fName">First Name</option>
+              <option value="lName">Last Name</option>
+              <option value="companyName">Company Name</option>
+              <option value="type">Contact Type</option>
+              <option value="email">Email</option>
+              <option value="phoneNumber">Phone Number</option>
+          </select>
+        </div>
+        <input type="text" [(ngModel)]="searchText" id="search" placeholder="Search">
+      </div>
+    </div>
+  
+    <div class="table">
+      <table class="table table-striped table-bordered" id="dataTable" style="width:100%" >
+        <thead>
+  
+            <tr>
+              <th>ID <button (click)="idSort(contacts)" class="sort">&#x2195;</button></th>
+              <th>First Name<button (click)="firstNameSort(contacts)" class="sort">&#x2195;</button></th>
+              <th>Last Name<button (click)="lastNameSort(contacts)" class="sort">&#x2195;</button></th>
+              <th>Company<button (click)="companySort(contacts)" class="sort">&#x2195;</button></th>
+              <th>Type</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Added By</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of contacts">
+            <td>{{contact.id}}</td>
+            <td>{{contact.firstName}}</td>
+            <td>{{contact.lastName}}</td>
+            <td>{{contact.client}}</td>
+            <td>{{contact.type}}</td>
+            <td><a href="mailto:{{contact.email}}">{{contact.email}}</a></td>
+            <td><a [href]="setSkypeNumber(contact.phoneNumber)">{{contact.phoneNumber}}</a></td>
+            <td>{{contact.user.username}}</td>
+            <td class="text-center">
+              <a class="btn btn-primary" [routerLink]="['/contact/edit/', contact.id]">Edit</a>&nbsp;
+              <button (click)="deleteContact(contact.id)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>

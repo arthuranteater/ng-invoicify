@@ -1,0 +1,68 @@
+<section @fadeInAnimation>
+    <ol class="breadcrumb">
+      <li>
+        <a routerLink="/home">Home</a>
+      </li>
+      <li>
+        <a routerLink="/invoice">Invoices</a>
+      </li>
+      <li class="active"><b>Add Invoice</b></li>
+    </ol>
+  
+    <a class="btn btn-primary" routerLink="/invoice" style="position: relative;right:-600px;margin-bottom:30px;">Return to Invoices</a>
+  
+    <h1 style="margin-bottom: 20px;font-size: 24px;"><b>Add Invoice</b></h1>
+  
+    <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  
+    <form (ngSubmit)="saveInvoice(invoiceForm)" #invoiceForm="ngForm" class="form-horizontal">
+      <div class="form-group">
+        <label for="client" class="col-sm-2 control-label">Client</label>
+        <div class="col-sm-10">
+          <select required [(ngModel)]="selectedClient" ngModel #client="ngModel" class="form-control" id="client" name="client" (change)=getBillingRecordsById(selectedClient)>
+            <option [ngValue]="null" disabled>-- Select Client --</option>
+            <option *ngFor="let company of companies" [ngValue]="company.id">
+              {{ company.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="invoiceDescription" class="col-sm-2 control-label">Invoice Description</label>
+        <div class="col-sm-10">
+          <input ngModel #invoiceDescription="ngModel" type="text" class="form-control" id="invoiceDescription" name="invoiceDescription"
+            placeholder="Description" required minlength="5" maxlength="30">
+          <span *ngIf="formErrors.invoiceDescription" class="text-danger">
+            {{ formErrors.invoiceDescription }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="client" class="col-sm-2 control-label">Line Item</label>
+        <div class="col-sm-10">
+          <select multiple required ngModel #client="ngModel" class="form-control" id="recordIds" name="recordIds">
+            <ng-container *ngFor="let billingRecord of billingRecords">
+              <option  [ngValue]="billingRecord.id" [attr.disabled]="billingRecord.inUse ? '' : null">
+                {{ billingRecord.client.name }} - {{billingRecord.description}} - {{billingRecord.total}}
+              </option>
+              <!-- *ngIf="!billingRecord.inUse" [ngClass]="{'disabled-entry': billingRecord.inUse} -->
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button [disabled]="!invoiceForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </section>
+  
+  <style>
+      li{
+          display: inline-flex;
+      }
+      option:disabled{
+        color:lightgray; 
+      }
+  </style>
