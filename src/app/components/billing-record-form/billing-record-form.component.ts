@@ -70,10 +70,6 @@ export class BillingRecordFormComponent implements OnInit {
   onValueChanged(data?: any) {
     let form = this.billingRecordForm.form;
 
-    //     const user = {name: 'John Smith', age: 20}
-    // getKeyValue<keyof typeof user, user>('name', user)
-    //     for (let field in errors) {
-    // clear previous error message (if any)
   let errors: Error = this.formErrors
     for (const field in errors) {
     errors[field] = '';
