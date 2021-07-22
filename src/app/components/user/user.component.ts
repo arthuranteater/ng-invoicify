@@ -2,11 +2,13 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data.service';
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
+import { fadeInAnimation } from 'src/app/styling/fade-in.animation';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  animations: [fadeInAnimation],
 })
 export class UserComponent implements OnInit {
 

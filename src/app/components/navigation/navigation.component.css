@@ -64,9 +64,6 @@
     padding-bottom: 26.5px;
     line-height: 27px;
   }
-}
-
-@media (min-width: 768px) {
   .navbar-right {
     float: right !important;
     margin-right: 0px;

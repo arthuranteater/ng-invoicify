@@ -10,7 +10,7 @@ import { Error, Validation } from '../billing-record-form/map';
   selector: 'app-company-form',
   templateUrl: './company-form.component.html',
   styleUrls: ['./company-form.component.css'],
-  animations: [fadeInAnimation]
+  animations: [fadeInAnimation],
 })
 export class CompanyFormComponent implements OnInit {
   companyForm!: NgForm;
@@ -27,18 +27,15 @@ export class CompanyFormComponent implements OnInit {
     private location: Location
   ) {}
 
-  getRecordForEdit() {
-    this.route.paramMap.subscribe((params: Params) =>
-      this.dataService
-        .getRecord('company', +params['id'])
-        .subscribe((company: any) => (this.company = company))
-    );
+  getRecordForEdit(id: string) {
+    this.dataService
+      .getRecord('company', +id)
+      .subscribe((company: any) => (this.company = company));
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: Params) => {
-      +params['id'] ? this.getRecordForEdit() : null;
-    });
+    const companyId = this.route.snapshot.paramMap.get('id');
+    companyId ? this.getRecordForEdit(companyId) : null;
   }
 
   saveCompany(companyForm: NgForm) {

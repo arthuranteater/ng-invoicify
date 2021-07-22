@@ -4,11 +4,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Error, Validation } from '../billing-record-form/map';
 import {Location} from '@angular/common';
+import { fadeInAnimation } from 'src/app/styling/fade-in.animation';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+  styleUrls: ['./user-form.component.css'],
+  animations: [fadeInAnimation],
 })
 export class UserFormComponent implements OnInit {
 
@@ -27,20 +29,15 @@ export class UserFormComponent implements OnInit {
   ) {}
 
 
-  getRecordForEdit(){
-    this.route.paramMap.subscribe((params: Params) =>
+  getRecordForEdit(id: string){
     this.dataService
-      .getRecord('user', +params['id'])
+      .getRecord('user', + id)
       .subscribe((user: any) => (this.user = user))
-  );
-
-  }
+  } 
 
   ngOnInit() {
-    this.route.paramMap
-      .subscribe((params: Params) => {
-        (+params['id']) ? this.getRecordForEdit() : null;
-      });
+    const userId = this.route.snapshot.paramMap.get('id');
+    userId ? this.getRecordForEdit(userId) : null;
   }
 
   saveUser(userForm: NgForm){

@@ -48,6 +48,7 @@ export class DataService {
 
   getRecord(endpoint: string, id: number): Observable<object> {
     let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+    console.log('apiUrl', apiUrl);
     return this.http.get(apiUrl, { withCredentials: true }).pipe(
       tap(
         (data) => {
