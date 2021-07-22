@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavigationComponent implements OnInit {
 
-  auth_user: any = {};
+  auth_user!: any;
 
   errorMessage: string = '';
   successMessage: string = '';
@@ -35,8 +35,10 @@ export class NavigationComponent implements OnInit {
   }
 
   login(user: NgForm){
+    console.log("user.value", user.value)
     this.authService.login(user.value).subscribe(
       success=> {
+        console.log("success", success)
         this.refreshUser();
       },
       error => {

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CompanyFormComponent } from './company-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 describe('CompanyFormComponent', () => {
   let component: CompanyFormComponent;
@@ -8,7 +9,7 @@ describe('CompanyFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompanyFormComponent ]
+      declarations: [ CompanyFormComponent, BrowserAnimationsModule]
     })
     .compileComponents();
   });

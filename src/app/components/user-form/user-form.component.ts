@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Error, Validation } from '../billing-record-form/map';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-user-form',
@@ -36,7 +37,7 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params
+    this.route.paramMap
       .subscribe((params: Params) => {
         (+params['id']) ? this.getRecordForEdit() : null;
       });

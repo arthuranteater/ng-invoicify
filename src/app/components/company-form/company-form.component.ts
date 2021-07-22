@@ -10,6 +10,7 @@ import { Error, Validation } from '../billing-record-form/map';
   selector: 'app-company-form',
   templateUrl: './company-form.component.html',
   styleUrls: ['./company-form.component.css'],
+  animations: [fadeInAnimation]
 })
 export class CompanyFormComponent implements OnInit {
   companyForm!: NgForm;

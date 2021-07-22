@@ -1,54 +1,91 @@
-<div class="flexbox">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" routerLink="/home">
-                    <img width="100" alt="Invoicify - HR" src="assets/images/ally_logo.png" />
-                </a>
-            </div>
-            <!--/.nav-collapse -->
-            <form class="navbar-form navbar-right" (ngSubmit)="login(loginForm)" #loginForm="ngForm" *ngIf="!isAuthenticated()">
-                <div class="form-group">
-                    <input type="text" ngModel #username="ngModel" class="form-control" placeholder="Username" name="username" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" ngModel #passowrd="ngModel" class="form-control" placeholder="Password" name="password" required>
-                </div>
-                <button [disabled]="!loginForm.form.valid" type="submit" class="btn btn-success">Login</button>
-            </form>
-            <div class="navbar-text navbar-right" *ngIf="isAuthenticated()">
-                Signed in as: <a [routerLink]="['/user/edit/', auth_user.id]">{{auth_user.username}}</a> <button class="btn btn-info btn-xs" (click)="logout()">Logout</button>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li routerLinkActive="active">
-                        <a routerLink="/home">Home</a>
-                    </li>
-                    <li *ngIf="isAuthenticated()" routerLinkActive="active">
-                        <a routerLink="/company">Companies</a>
-                    </li>
-                    <li *ngIf="isAuthenticated()" routerLinkActive="active">
-                        <a routerLink="/billing-record">Billing Records</a>
-                    </li>
-                    <li *ngIf="isAuthenticated()" routerLinkActive="active">
-                            <a routerLink="/invoice">Invoices</a>
-                        </li>
-                    <li *ngIf="isAuthenticated()" routerLinkActive="active">
-                        <a routerLink="/user">Users</a>
-                    </li>
-                </ul>
-            </div>
+<div style="margin-bottom: 100px">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button
+          type="button"
+          class="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#navbar"
+          aria-expanded="false"
+          aria-controls="navbar"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" routerLink="/home">
+          <img height="80px;" alt="G-School" src="assets/g_logo.png" />
+        </a>
+      </div>
+      <!--/.nav-collapse -->
+        <form
+          class="navbar-form navbar-right"
+          (ngSubmit)="login(loginForm)"
+          #loginForm="ngForm"
+          *ngIf="!isAuthenticated()"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              ngModel
+              #username="ngModel"
+              class="form-control"
+              placeholder="Username"
+              name="username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              ngModel
+              #passowrd="ngModel"
+              class="form-control"
+              placeholder="Password"
+              name="password"
+              required
+            />
+          </div>
+          <button [disabled]="!loginForm.form.valid" type="submit" class="btn">
+            Login
+          </button>
+        </form>
+        <div class="navbar-text navbar-right" *ngIf="isAuthenticated()">
+          Signed in as:
+          <a class="navlink" [routerLink]="['/user/edit/', auth_user?.id]">{{
+            auth_user.username
+          }}</a>
+          <button class="btn" (click)="logout()">Logout</button>
         </div>
-    </nav>
+
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li routerLinkActive="active">
+            <a routerLink="/home">Home</a>
+          </li>
+          <li *ngIf="isAuthenticated()" routerLinkActive="active">
+            <a routerLink="/company">Companies</a>
+          </li>
+          <li *ngIf="isAuthenticated()" routerLinkActive="active">
+            <a routerLink="/billing-record">Billing Records</a>
+          </li>
+          <li *ngIf="isAuthenticated()" routerLinkActive="active">
+            <a routerLink="/invoice">Invoices</a>
+          </li>
+          <li *ngIf="isAuthenticated()" routerLinkActive="active">
+            <a routerLink="/user">Users</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </div>
 
 <div class="container">
-    <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  <app-status-message
+    [successMessage]="successMessage"
+    [errorMessage]="errorMessage"
+  ></app-status-message>
 </div>

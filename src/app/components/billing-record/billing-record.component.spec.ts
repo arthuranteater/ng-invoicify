@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BillingRecordComponent } from './billing-record.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
 
 describe('BillingRecordComponent', () => {
   let component: BillingRecordComponent;
@@ -8,7 +10,7 @@ describe('BillingRecordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BillingRecordComponent ]
+      declarations: [ BillingRecordComponent, BrowserAnimationsModule ]
     })
     .compileComponents();
   });

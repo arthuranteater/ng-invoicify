@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { Error, Validation } from '../billing-record-form/map';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-contact-form',
